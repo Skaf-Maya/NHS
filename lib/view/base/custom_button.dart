@@ -9,7 +9,6 @@ class CustomButton extends StatelessWidget {
   final double width;
   final TextStyle textStyle;
   final double radius;
-  final bool loading;
 
   CustomButton({
     required this.onPressed,
@@ -18,7 +17,6 @@ class CustomButton extends StatelessWidget {
     required this.height,
     required this.textStyle,
     required this.radius,
-    required this.loading
 });
 
   @override
@@ -40,11 +38,7 @@ class CustomButton extends StatelessWidget {
           onPressed: onPressed,
           style: flatButtonStyle,
           child: Center(
-            child: loading ? SpinKitWave(
-              color: Theme.of(context).colorScheme.onPrimary,
-              size: 20,
-            ) :
-            Text(text,
+            child: Text(text,
                 textAlign: TextAlign.center,
                 style: textStyle
             ),

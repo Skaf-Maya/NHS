@@ -4,8 +4,9 @@ import 'package:nhs/helper/route_helper.dart';
 import 'package:nhs/utils/app_constants.dart';
 import 'helper/get_di.dart' as di;
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Future.delayed(const Duration(milliseconds: 300));
   di.init();
   runApp(const MyApp());
 }

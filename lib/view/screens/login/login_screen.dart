@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nhs/controller/login_controller.dart';
+import 'package:nhs/helper/route_helper.dart';
 import 'package:nhs/theme/light_theme.dart';
 import 'package:nhs/utils/dimensions.dart';
 import 'package:nhs/utils/images.dart';
@@ -88,14 +89,23 @@ class LoginScreen extends StatelessWidget {
                         width: context.width,
                         height: 74,
                         text: "Continue",
-                        loading: loginController.isLoading,
                         textStyle: titleBoldSFPRODISPLAY.copyWith(
                             color: light().cardColor),
                         radius: Dimensions.veryLargeSizeRadius,
-                        onPressed: () {
-                          loginController.login(
+                        onPressed: () async{
+                         await loginController.login(
                               loginController.emailController.text,
-                              loginController.passwordController.text);
+                              loginController.passwordController.text).then((status) async {
+                                if (status.isSuccess) {
+                                  Future.delayed(const Duration(seconds: 2)).then((value) {
+                                    Get.toNamed(RouteHelper.getNavBarRoute());
+                                  });
+                                }
+                                else {
+                                  print('-------------error-------------');
+                              print(status.message);
+                            }
+                           });
                         },
                       ),
                       const SizedBox(height: Dimensions.paddingSizeVeryLarge),

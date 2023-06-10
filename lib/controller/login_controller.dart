@@ -19,7 +19,7 @@ class LoginController extends GetxController implements GetxService {
 
   bool get isLoading => _isLoading;
 
-  Future<bool> login(String email, String password) async {
+   Future<ResponseModel> login(String email, String password) async {
     // if (emailController.text.isEmpty || !emailController.text.isEmail) {
     //   if(emailController.text.isEmpty) {
     //     showCustomSnackBar('please enter the email');
@@ -37,14 +37,15 @@ class LoginController extends GetxController implements GetxService {
       if (response.statusCode == 200) {
         authRepo.saveUserToken(response.body['token']);
         await authRepo.updateToken();
-        responseModel = ResponseModel(true, '');
-        Get.toNamed(RouteHelper.getNavBarRoute());
+        responseModel = ResponseModel(true, '${response.body['token']}');
+
+        // Get.toNamed(RouteHelper.getNavBarRoute());
       } else {
-        responseModel = ResponseModel(false, '');
+        responseModel = ResponseModel(false, response.statusText!);
       }
       _isLoading = false;
       update();
-      return true;
+      return responseModel;
     // }
   }
 
