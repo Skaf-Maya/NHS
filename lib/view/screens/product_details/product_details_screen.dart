@@ -159,6 +159,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                           width: context.width * 0.7,
                                           height: 55,
                                           text: "Order Now",
+                                          loading: false,
                                           textStyle: titleBoldOpenSans.copyWith(
                                               color: light().cardColor,fontSize: Dimensions.fontSizeSmall),
                                           radius: Dimensions.veryLargeSizeRadius,

@@ -89,6 +89,7 @@ class LoginScreen extends StatelessWidget {
                         width: context.width,
                         height: 74,
                         text: "Continue",
+                        loading: loginController.isLoading,
                         textStyle: titleBoldSFPRODISPLAY.copyWith(
                             color: light().cardColor),
                         radius: Dimensions.veryLargeSizeRadius,
@@ -97,14 +98,12 @@ class LoginScreen extends StatelessWidget {
                               loginController.emailController.text,
                               loginController.passwordController.text).then((status) async {
                                 if (status.isSuccess) {
-                                  Future.delayed(const Duration(seconds: 2)).then((value) {
-                                    Get.toNamed(RouteHelper.getNavBarRoute());
-                                  });
+                                  Get.toNamed(RouteHelper.getNavBarRoute());
                                 }
                                 else {
                                   print('-------------error-------------');
-                              print(status.message);
-                            }
+                                  print(status.message);
+                                }
                            });
                         },
                       ),
